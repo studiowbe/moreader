@@ -9,7 +9,8 @@ class MOReader
 
     public function read($filename)
     {
-        if (!isset($this->fileCache[$filename])) {
+        $filename = realpath($filename);
+        if ((bool) $filename && !isset($this->fileCache[$filename])) {
             $this->fileCache[$filename] = (array) new MOFile($filename);
         }
         return $this->fileCache[$filename];
